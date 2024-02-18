@@ -66,8 +66,7 @@ const images = [
 
 const container = document.querySelector('.gallery');
 
-// створюємо ф-цію, яка створює розмітку для одного зображення
-// ф-ція приймає одне зображення (item), і повертає розмітку для цього зображення
+
 function imageTemplate(item) {
   return `<li class="gallery-item">
       <a class="gallery-link" href="${item.original}">
@@ -79,30 +78,26 @@ function imageTemplate(item) {
       </a>
 </li>`;
 }
-// створюємо ф-цію, яка створює розмітку для всього масиву images
-// ф-ція приймає масив images
-// у цього масиву викликав метод map, який виклакає ф-цію imageTemplate
-//                         метод join, щоб перетворити елементи масиву в один суцільний рядок розмітки
+
 function imagesListTemplate(images) {
   const markup = images.map(imageTemplate).join('');
   return markup;
 }
 
-// створюємо ф-цію яка буде вкладувати в html файл в <ul> створену суцільну розмітку
+
 function render() {
   const markup = imagesListTemplate(images);
   container.innerHTML = markup;
 }
 
-render(); // викликаємо цю ф-цію, щоб побачити зображення на сторінці
+render(); 
 
-//Підключення CSS код бібліотеки в проєкт
-// Описаний в документації
+
 import SimpleLightbox from 'simplelightbox';
-// Додатковий імпорт стилів
+
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
-// ф-ція з бібліотеки
+
 const lightbox = new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
   captionPosition: 'bottom',
