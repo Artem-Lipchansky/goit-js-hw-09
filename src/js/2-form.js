@@ -17,53 +17,41 @@ function loadFromLS(key = 'empty') {
   }
 }
 
-
-form.addEventListener('input', () => {
-  
+function handleInput() {
   const userName = form.elements.email.value;
   const userMessage = form.elements.message.value;
 
-  
   const data = {
     email: userName,
     message: userMessage,
   };
 
- 
   saveToLS(STORAGE_KEY, data);
-});
-
+}
 
 function restoreData() {
   const data = loadFromLS(STORAGE_KEY) || {};
   form.elements.email.value = data.email || '';
   form.elements.message.value = data.message || '';
 }
-restoreData();
 
-
-form.addEventListener('submit', e => {
+function handleSubmit(e) {
   e.preventDefault();
 
- 
   const userName = form.elements.email.value;
   const userMessage = form.elements.message.value;
 
-  
   if (userName.trim() === '' || userMessage.trim() === '') {
     alert('Please fill in both fields of the form');
     return;
   }
 
-  
-  const data = loadFromLS(STORAGE_KEY) || {};
-
-  
-  console.log(data);
-
-  
   form.reset();
-
-  
   localStorage.removeItem(STORAGE_KEY);
-});
+}
+
+form.addEventListener('input', handleInput);
+form.addEventListener('submit', handleSubmit);
+
+
+restoreData();
